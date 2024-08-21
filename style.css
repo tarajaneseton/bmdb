@@ -18,7 +18,7 @@ body {
 }
 
 header{
-    padding:1rem;
+    padding:5rem;
     display:flex;
     justify-content:center;
     background-color: var(--secondary-color);
@@ -77,10 +77,16 @@ movie-info h3{
 }
 
 .movie-info span{
-    background-color: #eee;
-    padding: 0.25 0.5rem;
-    border-radius: 3px;
-    font-weight: bold;
+background-color:transparent;
+border: 2px solid #ffeedd;
+padding:0.5rem 1rem;
+border-radius: 1rem;
+color: #fff;
+font-family: inherit;
+font-size: 15px;
+margin-right: 10px;
+margin-left: 10px;
+font-weight: bold;
 }
 
 .overview{
@@ -97,4 +103,9 @@ movie-info h3{
 
 .movie:hover .overview{
     transform:translateY(0);
+}
+
+.vote-average{
+    background-color: var(--primary-color);
+
 }

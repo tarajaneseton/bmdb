@@ -2,24 +2,25 @@ const API_KEY = "api_key=7c1be07eb15d082f585c8c039f3ca132";
 const BASE_URL = "https://api.themoviedb.org/3/";
 const API_URL = BASE_URL + "trending/movie/day?language=en-US&" + API_KEY;
 const IMG_URL = "https://image.tmdb.org/t/p/w500"; //url for images
+const searchURL = BASE_URL + 'search/movie?' + API_KEY;
 
 const main = document.getElementById('main');
+const form = document.getElementById('form')
+const search = document.getElementById('search')
 
 getMovies(API_URL); //calling the function that fetches the movie api data
 
 function getMovies(url) {
   fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
+    .then(res => res.json())
+    .then(data => {
       //fetch the data from the api
-      console.log(data.results);
       showMovies(data.results);
     });
 }
 
 function showMovies(data) {
-    //before looping, set the text to blank
-    main.innerHTML = '';
+    //before looping, set the innerhtml as an ampty string, every time the function is called there is a blank state, and then each element is updated
 
   data.forEach((movie) => {
     const { title, poster_path, vote_average, overview } = movie; //desired extracted data
@@ -28,9 +29,13 @@ function showMovies(data) {
     movieEl.innerHTML = `     
           <img src="${IMG_URL+poster_path}"
           alt="${title}">
+
           <div class="movie-info">
             <h3>${title}</h3>
-            <h4>${vote_average}</h4>
+<span>${vote_average}</span> 
+            
+            
+       
           </div>
 
           <div class="overview">
@@ -42,3 +47,16 @@ function showMovies(data) {
         main.appendChild(movieEl);
   });
 }
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const searchTerm = search.value;
+
+    if(searchTerm) {
+        getMovies(searchURL + '&query='+searchTerm)
+    }else{
+        getMovies(API_URL);
+    }
+
+    })
