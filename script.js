@@ -154,7 +154,7 @@ function showMovies(data) {
     const movieEl = document.createElement("div");
     movieEl.classList.add("movie");
     movieEl.innerHTML = `     
-          <img src="${IMG_URL+poster_path}"
+          <img src="${poster_path? IMG_URL+poster_path: "https://unsplash.com/photos/white-and-black-9-card-Qj-xTdGj9vk" } "
           alt="${title}">
 
           <div class="movie-info">
