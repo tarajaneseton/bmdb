@@ -116,10 +116,24 @@ function setGenre() {
                 console.log(selectedGenre)  
                 // getMovies(API_KEY + '&with_genres='+(selectedGenre.join(',')))
                 getMovies(API_URL + '&with_genres=' +encodeURI(selectedGenre.join(','))) //takes all the elemsents in the array, separates by comma and converts to string
+                highlightSelection() 
         })
         tagsEl.append(t);
     })
     }
+
+    function highlightSelection() {
+      const tags = document.querySelectorAll('.tag')
+      tags.forEach(tag => {
+        tag.classList.remove('highlight')
+      })
+      if(selectedGenre.length !=0){
+      selectedGenre.forEach(id => {
+          const highlightedTag = document.getElementById(id);
+          highlightedTag.classList.add('highlight');
+      })
+    }
+  }
 
 getMovies(API_URL); //calling the function that fetches the movie api data
 

@@ -130,3 +130,8 @@ font-weight: bold;
     background-color: #A899FF;
 
 }
+
+.tag.highlight{
+    background-color: black;
+    color: white;
+}
