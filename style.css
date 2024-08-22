@@ -123,3 +123,10 @@ font-weight: bold;
     display: inline-block;
     cursor: pointer;
 }
+
+.logo{
+    font-family: Matemasie;
+    margin-bottom: 5px;
+    background-color: #A899FF;
+
+}

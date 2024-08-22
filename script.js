@@ -114,7 +114,8 @@ function setGenre() {
                 }
                 }          
                 console.log(selectedGenre)  
-                getMovies(API_KEY + '&with_genres='+(selectedGenre.join(',')))
+                // getMovies(API_KEY + '&with_genres='+(selectedGenre.join(',')))
+                getMovies(API_URL + '&with_genres=' +encodeURI(selectedGenre.join(','))) //takes all the elemsents in the array, separates by comma and converts to string
         })
         tagsEl.append(t);
     })
