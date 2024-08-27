@@ -127,7 +127,10 @@ font-weight: bold;
 .logo{
     font-family: Matemasie;
     margin-bottom: 5px;
-    background-color: #A899FF;
+    margin-top: 10px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
 }
 
