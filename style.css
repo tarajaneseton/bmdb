@@ -115,9 +115,9 @@ font-weight: bold;
 }
 
 .tag{
-    color: black;
+    color: white;
     padding: 10px 20px;
-    background-color: #A899FF;
+    background-color: black;
     border-radius: 30px;
     margin: 5px;
     display: inline-block;
@@ -130,11 +130,16 @@ font-weight: bold;
     margin-top: 10px;
     display:flex;
     flex-wrap: wrap;
-    justify-content: center;
+    /* justify-content: center; */
 
 }
 
+.inside-header {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
 .tag.highlight{
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black ;
 }
