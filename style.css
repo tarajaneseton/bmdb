@@ -18,7 +18,8 @@ body {
 }
 
 header{
-    padding:5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     display:flex;
     justify-content:center;
     background-color: var(--secondary-color);
@@ -126,17 +127,16 @@ font-weight: bold;
 
 .logo{
     font-family: Matemasie;
-    margin-bottom: 5px;
-    margin-top: 10px;
-    display:flex;
-    flex-wrap: wrap;
-    /* justify-content: center; */
-
+    font-size: 7rem;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
 .inside-header {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    align-items: center;
 }
 
 .tag.highlight{
