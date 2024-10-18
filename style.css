@@ -5,8 +5,8 @@
 }
 
 :root{
-    --primary-color: #B8B8FF;
-    --secondary-color: #faedcd;
+    --primary-color: #ffeafb;
+    --secondary-color: #fecced;
 
 
 }
@@ -55,7 +55,7 @@ main{
     width:300px;
     margin: 1rem;
     border-radius: 1rem;
-    background-color: #A899FF;
+    background-color: #a3e7c3;
     padding: 1rem;
     position: relative;
     overflow: hidden; 
@@ -79,10 +79,10 @@ movie-info h3{
 
 .movie-info span{
 background-color:transparent;
-border: 2px solid #ffeedd;
+border: 2px solid #000;
 padding:0.5rem 1rem;
 border-radius: 1rem;
-color: #fff;
+color: #000;
 font-family: inherit;
 font-size: 15px;
 margin-right: 10px;
@@ -125,6 +125,19 @@ font-weight: bold;
     cursor: pointer;
 }
 
+
+#shorts{
+    display: inline-block;
+text-align: center;
+    color: white;
+    padding: 10px 20px;
+    background-color: black;
+    border-radius: 30px;
+    margin: 5px;
+    cursor: pointer;
+    height: 44px;
+} 
+
 .logo{
     font-family: Matemasie;
     font-size: 7rem;
@@ -139,7 +152,29 @@ font-weight: bold;
     align-items: center;
 }
 
-.tag.highlight{
+#shorts.highlight{
+    align-items: center;
+    color: black;
     background-color: white;
-    color: black ;
+
 }
+
+.release-tag{
+    display: inline-block;
+    text-align: center;
+    color: white;
+    padding: 10px 20px;
+    background-color: black;
+    border-radius: 30px;
+    margin: 5px;
+    cursor: pointer;
+    height: 44px;
+} 
+
+#releaseyear.highlight{
+    align-items: center;
+    color: black;
+    background-color: white;
+
+}
+

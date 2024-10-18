@@ -1,8 +1,14 @@
 const API_KEY = "api_key=7c1be07eb15d082f585c8c039f3ca132";
 const BASE_URL = "https://api.themoviedb.org/3"; // Base URL for the TMDB API
-const API_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY; //API endpoint for most popular movies
+const API_URL =
+  BASE_URL +
+  "/discover/movie?include_adult=false&language=en-US&sort_by=popularity.desc&" +
+  API_KEY; //API endpoint for most popular movies
 const IMG_URL = "https://image.tmdb.org/t/p/w500"; //URL for fetching images from TMDB
 const searchURL = BASE_URL + "/search/movie?" + API_KEY; //API endpoint for searching movies
+const RUNTIME = API_URL + "&with_runtime.lte=50";
+const RELEASE2024 = API_URL + "&with_primary_release_date.gte=2024";
+const RELEASE2023 = API_URL + "&with_primary_release_date.gte=2023";
 
 const genres = [
   {
@@ -88,15 +94,62 @@ const main = document.getElementById("main");
 const form = document.getElementById("form");
 const search = document.getElementById("search");
 const tagsEl = document.getElementById("tags");
+const shortfilmtagEl = document.getElementById("shorts");
+const releaseYearTags = document.querySelectorAll(".release-tag");
 
 var selectedGenre = []; // This will store the clicked genre id within an empty array
 
+// Logic for the Short Film filter
+
 document.addEventListener("DOMContentLoaded", () => {
-  // An event listener for when the DOM is fully loaded
+  // An event listener to ensure the DOM is fully loaded first
   setGenre(); // Initiliases genre tags after the DOM is ready
+  shortfilmtagEl.addEventListener("click", () => {
+    // when the 'short films' button is clicked
+    if (shortfilmtagEl.classList.contains("highlight")) {
+      shortfilmtagEl.classList.remove("highlight"); // Remove highlight if already highlighted
+      updateMoviesDisplay(); // Update movie display
+    } else {
+      shortfilmtagEl.classList.add("highlight"); // Or, if not selected, add the highlight class
+      getMovies(RUNTIME); // and fetch short films with runtime <= 50 minutes
+    }
+    highlightSelectedGenres(); // Call the highlight function to ensure the short films button is highlighted
+  });
+});
+
+// Logic for the Release Year filters
+document.addEventListener("DOMContentLoaded", () => {
+  //An event listener to ensure the DOM is fully loaded first
+  releaseYearTags.forEach((yearTag) => {
+    // Loop through each release year
+    yearTag.addEventListener("click", () => {
+      // once a year button is clicked
+      if (yearTag.classList.contains("highlight")) {
+        // Remove the highlight if already highlighted
+        yearTag.classList.remove("highlight");
+        updateMoviesDisplay(); // And update the movie display
+      } else {
+        // releaseYearTags.forEach( y => y.classList.remove("highlight"));
+        yearTag.classList.add("highlight"); // Or, if not selected, add the highlight class
+        const selectedYear = yearTag.getAttribute("data-year"); // fetch the "data-year" attribute to determine which year has been clicked
+
+        if (selectedYear === "2023") {
+          //if the selected year is 2023
+          getMovies(RELEASE2023); // fetch movies marked '2023' from the RELEASE2023 API endpoint
+        } else if (selectedYear === "2024") {
+          // or if the selected year is 2024
+          getMovies(RELEASE2024); // fetch movies marked '2024' from the RELEASE2024 API endpoint
+        }
+      }
+      updateMoviesDisplay(); // and update the movie display
+
+      highlightSelectedGenres(); // highglight the selected filter button
+    });
+  });
 });
 
 function setGenre() {
+  // A function to set the genre tags
   tagsEl.innerHTML = "";
 
   genres.forEach((genre) => {
@@ -156,9 +209,6 @@ function updateMoviesDisplay() {
 getMovies(API_URL + "&with_genres=" + encodeURI(selectedGenre.join(",")));
 
 highlightSelectedGenres();
-
-// tagsEl.append(t); - presenting errors so ive commented it out for
-
 getMovies(API_URL); //calling the function that fetches the movie api data
 
 function getMovies(url) {
@@ -189,7 +239,7 @@ function showMovies(data) {
           <img src="${
             poster_path
               ? IMG_URL + poster_path // display movie poster if available
-              : "https://unsplash.com/photos/white-and-black-9-card-Qj-xTdGj9vk" // or display placeholder image
+              : "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5503fd01-2819-4ab8-9d25-4dfc9c9cfdfa/dgvfs5c-4c85279c-6a6a-4e64-acc9-4f178c81cb5f.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzU1MDNmZDAxLTI4MTktNGFiOC05ZDI1LTRkZmM5YzljZmRmYVwvZGd2ZnM1Yy00Yzg1Mjc5Yy02YTZhLTRlNjQtYWNjOS00ZjE3OGM4MWNiNWYuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Z8TxVZaFO2h-ZqpTfaVPIHi_EH9jA-qfu9TLs2Bjg7I" // or display placeholder image
           } "
           alt="${title || "No title available"}">
           <div class="movie-info">
