@@ -27,12 +27,14 @@ header{
 
 .search{
     background-color:transparent;
-    border: 3px solid var(--primary-color);
+    border: 3px solid;
+    border-color: white;
     padding:0.5rem 1rem;
     border-radius: 1rem;
     color: #000;
     font-family: inherit;
-    font-size: 15px;
+    font-size: 20px;
+    text-align: center;
     
 }
 
@@ -45,6 +47,17 @@ header{
     color: #000
 }
 
+.submit{
+    background-color: #a3e7c3;
+    border: 2px solid;
+    padding:0.5rem 1rem;
+    border-radius: 1rem;
+    border-color: white;
+    color: #000;
+    font-family: inherit;
+    font-size: 20px;
+    text-align: center;
+}
 main{
     display:flex;
     flex-wrap: wrap;
