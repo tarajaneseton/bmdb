@@ -213,3 +213,19 @@ text-align: center;
 
 }
 
+.highlight {
+    display: inline-block;
+    align-items: center;
+    color: black;
+    background-color: white;
+}
+
+#filters {
+    width: 100%;
+    max-width: 1200px; /* Add a max-width if necessary */
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
