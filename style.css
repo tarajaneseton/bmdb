@@ -151,6 +151,18 @@ text-align: center;
     height: 44px;
 } 
 
+#black{
+    display: inline-block;
+text-align: center;
+    color: white;
+    padding: 10px 20px;
+    background-color: black;
+    border-radius: 30px;
+    margin: 5px;
+    cursor: pointer;
+    height: 44px;
+} 
+
 .logo{
     font-family: Matemasie;
     font-size: 7rem;
@@ -166,6 +178,15 @@ text-align: center;
 }
 
 #shorts.highlight{
+    display: inline-block;
+    align-items: center;
+    color: black;
+    background-color: white;
+
+}
+
+#black.highlight{
+    display: inline-block;
     align-items: center;
     color: black;
     background-color: white;
@@ -185,6 +206,7 @@ text-align: center;
 } 
 
 #releaseyear.highlight{
+    display: inline-block;
     align-items: center;
     color: black;
     background-color: white;

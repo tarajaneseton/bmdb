@@ -9,6 +9,8 @@ const searchURL = BASE_URL + "/search/movie?" + API_KEY; //API endpoint for sear
 const RUNTIME = API_URL + "&with_runtime.lte=50";
 const RELEASE2024 = API_URL + "&with_primary_release_date.gte=2024";
 const RELEASE2023 = API_URL + "&with_primary_release_date.gte=2023";
+const BLACK = "https://api.themoviedb.org/4/list/8429725?";
+const BLACKMOVIES = BLACK + API_URL;
 
 const genres = [
   {
@@ -96,11 +98,12 @@ const search = document.getElementById("search");
 const tagsEl = document.getElementById("tags");
 const shortfilmtagEl = document.getElementById("shorts");
 const releaseYearTags = document.querySelectorAll(".release-tag");
+const blackfilmtagEl = document.getElementById("black");
+
 
 var selectedGenre = []; // This will store the clicked genre id within an empty array
 
 // Logic for the Short Film filter
-
 document.addEventListener("DOMContentLoaded", () => {
   // An event listener to ensure the DOM is fully loaded first
   setGenre(); // Initiliases genre tags after the DOM is ready
@@ -145,6 +148,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
       highlightSelectedGenres(); // highglight the selected filter button
     });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // An event listener to ensure the DOM is fully loaded first
+  blackfilmtagEl.addEventListener("click", () => {
+    // when the 'short films' button is clicked
+    if (blackfilmtagEl.classList.contains("highlight")) {
+      blackfilmtagEl.classList.remove("highlight"); // Remove highlight if already highlighted
+      updateMoviesDisplay(); // Update movie display
+    } else {
+      blackfilmtagEl.classList.add("highlight"); // Or, if not selected, add the highlight class
+      getMovies(BLACKMOVIES); // and fetch short films with runtime <= 50 minutes
+    }
+    highlightSelectedGenres(); // Call the highlight function to ensure the short films button is highlighted
   });
 });
 
